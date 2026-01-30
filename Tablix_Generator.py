@@ -26,14 +26,20 @@ st.title("SSRS Tablix Generator")
 col1, col2 = st.columns(2)
 
 with col1:
-    st.subheader("Fields XML")
+    st.subheader("Fields XML",help="SSRS için oluşturulmuş datasete ait Fields bloğu buraya yapıştırılarak Tablix Oluştur Butonuna basılacaktır.")
     fields_xml = st.text_area(
         label="Fields XML",
         height=400,
         placeholder="<Fields>...</Fields>",
         label_visibility="collapsed"
+
     )
-    suffix = st.text_input("Suffix", value="10")
+    suffix = st.text_input(
+    "Suffix",
+    value="10",
+    help="Aynı rapora birden fazla tablix eklerken isim çakışmasını önlemek için kullanılır."
+)
+
     st.button("Tablix Oluştur")
 
 with col2:
