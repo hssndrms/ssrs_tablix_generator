@@ -1,0 +1,8 @@
+dataset_name: Main
+tablix_name: Tablix1
+top: 17mm
+left: 0mm
+row_height: 6mm
+header_height: 6mm
+width_per_column_default: 25mm
+zindex: 1

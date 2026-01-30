@@ -1,0 +1,32 @@
+System.DateTime:
+  align: Left
+  format: dd/MM/yyyy
+  width: 20mm
+System.Decimal:
+  align: Right
+  format: N2
+  overrides:
+    exchangerate:
+      format: N4
+    kur:
+      format: N4
+  width: 25mm
+System.Double:
+  align: Right
+  format: N2
+  width: 25mm
+System.String:
+  align: Left
+  format: null
+  overrides:
+    currencycode:
+      width: 12mm
+    description:
+      width: 75mm
+    firstlastname:
+      width: 40mm
+    parabiri:
+      width: 12mm
+    storecode:
+      width: 15mm
+  width: 25mm

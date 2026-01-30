@@ -1,0 +1,32 @@
+EN:
+  CurrAccCode: Account Code
+  CurrencyCode: Currency Code
+  ExchangeRate: Exchange Rate
+  StoreCode: Store Code
+  StoreDescription: Store Name
+TR:
+  Amount: Tutar
+  CreditCardPaymentNumber: Kredi Kartı Ödeme Numarası
+  CreditCardTypeCode: Kredi Kartı Tipi
+  CreditCardTypeDescription: Kredi Kartı Tipi Açıklaması
+  CurrAccCode: Cari Hesap Kodu
+  CurrencyCode: Para Birimi
+  DeliveryCompanyDescription: Kargo Şirketi Adı
+  DiscountAmount: İskonto Tutarı
+  DocumentNumber: Belge Numarası
+  EInvoiceNumber: E-Fatura Numarası
+  ExchangeRate: Kur
+  FirstLastName: Adı-Soyadı
+  InvoiceDate: Fatura Tarihi
+  InvoiceNumber: Fatura Ref. Numarası
+  NetAmount: Net Tutar
+  OrderDate: Sipariş Tarihi
+  OrderNumber: Sipariş Ref. Numarası
+  PaymentAmount: Ödeme Tutarı
+  PaymentDate: Ödeme Tarihi
+  ReturnAmount: İade Edilecek Tutar
+  ReturnInvoiceDate: İade Fatura Tarihi
+  ReturnInvoiceNumber: İade Fatura Numarası
+  StoreCode: Mağaza Kodu
+  StoreDescription: Mağaza Adı
+  TaxBase: Vergi Matrahı
