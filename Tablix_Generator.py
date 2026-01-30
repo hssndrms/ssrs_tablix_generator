@@ -26,36 +26,42 @@ st.title("SSRS Tablix Generator")
 col1, col2 = st.columns(2)
 
 with col1:
-    st.subheader("Fields XML",help="SSRS için oluşturulmuş datasete ait Fields bloğu buraya yapıştırılarak Tablix Oluştur Butonuna basılacaktır.")
+    st.subheader("Fields XML",
+                 help="SSRS için oluşturulmuş datasete ait Fields bloğu buraya yapıştırılarak Tablix Oluştur Butonuna basılacaktır.")
     fields_xml = st.text_area(
         label="Fields XML",
         height=400,
         placeholder="<Fields>...</Fields>",
         label_visibility="collapsed"
-
     )
     suffix = st.text_input(
-    "Suffix",
-    value="10",
-    help="Aynı rapora birden fazla tablix eklerken isim çakışmasını önlemek için kullanılır."
-)
+        "Suffix",
+        value="10",
+        help="Aynı rapora birden fazla tablix eklerken isim çakışmasını önlemek için kullanılır."
+    )
 
     st.button("Tablix Oluştur")
 
 with col2:
+    st.subheader("Oluşturulan Tablix XML")
+
     if fields_xml.strip():
-        fields = parse_fields(fields_xml)
-        tablix = create_tablix(fields, suffix, lang=selected_lang)
+        try:
+            fields = parse_fields(fields_xml)
+            tablix = create_tablix(fields, suffix, lang=selected_lang)
 
-        raw = ET.tostring(tablix, encoding="utf-8")
-        pretty = xml.dom.minidom.parseString(raw).toprettyxml(indent="  ")
-        final_xml = "\n".join(pretty.splitlines()[1:])
+            raw = ET.tostring(tablix, encoding="utf-8")
+            pretty = xml.dom.minidom.parseString(raw).toprettyxml(indent="  ")
+            final_xml = "\n".join(pretty.splitlines()[1:])
 
-        st.subheader("Oluşturulan Tablix XML")
-        st.code(final_xml, language="xml")
+            st.code(final_xml, language="xml", height=485)
 
-        st.download_button(
-            "XML’i Kopyala / İndir",
-            final_xml,
-            file_name="tablix.xml"
-        )
+            st.download_button(
+                "XML’i İndir",
+                final_xml,
+                file_name="tablix.xml"
+            )
+        except ET.ParseError as e:
+            st.error(f"❌ Geçersiz Fields XML: {e}")
+    else:
+        st.info("💭 Lütfen önce Fields XML alanını doldurun.")
