@@ -29,4 +29,6 @@ System.String:
       width: 12mm
     storecode:
       width: 15mm
+    typecode:
+      width: 15mm
   width: 25mm

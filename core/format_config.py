@@ -20,6 +20,7 @@ def resolve_format(name: str, type_name: str):
         if key in lname:
             fmt = override.get("format", fmt)
             width = override.get("width", width)
+            align = override.get("align", align)
 
     return {
         "format": fmt,

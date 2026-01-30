@@ -51,14 +51,34 @@ st.markdown("## Name Override'ları")
 overrides = type_cfg.get("overrides", {})
 
 ov_df = pd.DataFrame(
-    [{"Anahtar": k, "Format": v.get("format"), "Width": v.get("width")}
-     for k, v in overrides.items()]
+    [{"Anahtar": k, "Format": v.get("format"), "Width": v.get("width"),"Align":v.get("align","")}
+     for k, v in overrides.items()],columns=["Anahtar", "Format", "Width", "Align"]
 )
 
 edited_ov = st.data_editor(ov_df, num_rows="dynamic")
 
+invalid_aligns = edited_ov[
+    ~edited_ov["Align"].str.lower().isin(["", "left", "right", "center"])
+]
+
+if not invalid_aligns.empty:
+    st.warning("⚠️ Align alanında geçersiz değerler var. Sadece Left / Right / Center kullanılabilir.")
+
 # --- Kaydet ---
 if st.button("Kaydet"):
+    errors = []
+
+    for i, row in edited_ov.iterrows():
+        align_value = row.get("Align")
+        if pd.notna(row.get("Align")) and row["Align"]:
+            if align_value.lower() not in ["left", "right", "center"]:
+                errors.append(f"Satır {i + 1}: Geçersiz Align → {row['Align']}")
+
+    if errors:
+        for err in errors:
+            st.error(err)
+        st.stop()
+
     # Default ayarları yaz
     formats[selected_type] = {
         "width": width or None,
@@ -78,6 +98,10 @@ if st.button("Kaydet"):
             ov_dict[key]["format"] = row["Format"]
         if pd.notna(row.get("Width")) and row["Width"]:
             ov_dict[key]["width"] = row["Width"]
+        if pd.notna(row.get("Align")) and row["Align"]:
+            align_val = row["Align"].strip().capitalize()
+            if align_val in ["Left", "Right", "Center"]:
+                ov_dict[key]["align"] = align_val
 
     if ov_dict:
         formats[selected_type]["overrides"] = ov_dict

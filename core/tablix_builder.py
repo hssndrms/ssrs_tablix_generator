@@ -48,6 +48,9 @@ def create_data_textbox(name, type_name, idx, suffix):
     ET.SubElement(style, "FontFamily").text = "Tahoma"
     ET.SubElement(style, "FontSize").text = "9pt"
 
+    if cfg.get("align"):
+        ET.SubElement(style, "TextAlign").text = cfg["align"]
+
     if cfg.get("format"):
         ET.SubElement(style, "Format").text = cfg["format"]
 
