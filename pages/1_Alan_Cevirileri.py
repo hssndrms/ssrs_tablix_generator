@@ -58,6 +58,7 @@ if st.button("Kaydet"):
         yaml.safe_dump(labels, f, allow_unicode=True)
 
     st.success("Çeviriler kaydedildi")
+    time.sleep(2)
     st.rerun()
 
 

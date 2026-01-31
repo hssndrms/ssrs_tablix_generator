@@ -11,12 +11,13 @@ TR:
   CreditCardTypeDescription: Kredi Kartı Tipi Açıklaması
   CurrAccCode: Cari Hesap Kodu
   CurrencyCode: Para Birimi
+  CutomerCode: Müşteri Kodu
   DeliveryCompanyDescription: Kargo Şirketi Adı
   DiscountAmount: İskonto Tutarı
   DocumentNumber: Belge Numarası
   EInvoiceNumber: E-Fatura Numarası
   ExchangeRate: Kur
-  FirstLastName: Adı-Soyadı
+  FirstLastName: Adı Soyadı
   InvoiceDate: Fatura Tarihi
   InvoiceNumber: Fatura Ref. Numarası
   NetAmount: Net Tutar
@@ -25,9 +26,10 @@ TR:
   PaymentAmount: Ödeme Tutarı
   PaymentDate: Ödeme Tarihi
   ReturnAmount: İade Edilecek Tutar
+  ReturnEInvoiceNumber: İade E-Fatura Numarası
   ReturnInvoiceDate: İade Fatura Tarihi
   ReturnInvoiceNumber: İade Fatura Numarası
   StoreCode: Mağaza Kodu
   StoreDescription: Mağaza Adı
   TaxBase: Vergi Matrahı
-  ReturnEInvoiceNumber: İade E-Fatura Numarası
+  VendorCode: Tedarikçi Kodu
