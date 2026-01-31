@@ -1,3 +1,5 @@
+import time
+
 import streamlit as st
 import yaml
 from pathlib import Path
@@ -111,4 +113,5 @@ if st.button("Kaydet"):
         yaml.safe_dump(formats, f, allow_unicode=True)
 
     st.success("Format ayarları kaydedildi")
+    time.sleep(2)
     st.rerun()
