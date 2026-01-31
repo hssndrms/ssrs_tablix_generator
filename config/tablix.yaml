@@ -1,8 +1,11 @@
+bckcolor: '#4682B4'
 dataset_name: Main
-tablix_name: Tablix1
-top: 17mm
+header_height: 6mm
 left: 0mm
 row_height: 6mm
-header_height: 6mm
+tablix_name: Tablix1
+textsize: 9pt
+top: 17mm
+txtcolor: '#ffffff'
 width_per_column_default: 25mm
 zindex: 1

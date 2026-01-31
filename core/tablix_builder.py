@@ -8,6 +8,7 @@ ET.register_namespace("rd", NS_RD.strip("{}"))
 
 
 def create_header_textbox(name, idx, suffix, lang="TR"):
+    tcfg = load_tablix_config()
     tb = ET.Element("Textbox", Name=f"hdr{name}{suffix}")
     ET.SubElement(tb, "CanGrow").text = "true"
 
@@ -20,20 +21,21 @@ def create_header_textbox(name, idx, suffix, lang="TR"):
 
     style = ET.SubElement(run, "Style")
     ET.SubElement(style, "FontFamily").text = "Tahoma"
-    ET.SubElement(style, "FontSize").text = "9pt"
+    ET.SubElement(style, "FontSize").text = tcfg.get("textsize", "9pt")
     ET.SubElement(style, "FontWeight").text = "Bold"
-    ET.SubElement(style, "Color").text = "White"
+    ET.SubElement(style, "Color").text = tcfg.get("txtcolor", "White")
 
     ET.SubElement(tb, NS_RD + "DefaultName").text = f"Textbox{10 + idx}"
 
     style2 = ET.SubElement(tb, "Style")
-    ET.SubElement(style2, "BackgroundColor").text = "SteelBlue"
+    ET.SubElement(style2, "BackgroundColor").text = tcfg.get("bckcolor", "SteelBlue")
 
     return tb
 
 
 def create_data_textbox(name, type_name, idx, suffix):
     cfg = resolve_format(name, type_name)
+    tcfg = load_tablix_config()
 
     tb = ET.Element("Textbox", Name=name + suffix)
 
@@ -46,7 +48,7 @@ def create_data_textbox(name, type_name, idx, suffix):
 
     style = ET.SubElement(run, "Style")
     ET.SubElement(style, "FontFamily").text = "Tahoma"
-    ET.SubElement(style, "FontSize").text = "9pt"
+    ET.SubElement(style, "FontSize").text = tcfg.get("textsize", "9pt")
 
     if cfg.get("align"):
         ET.SubElement(style, "TextAlign").text = cfg["align"]
