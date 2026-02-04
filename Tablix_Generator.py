@@ -62,6 +62,6 @@ with col2:
                 file_name="tablix.xml"
             )
         except ET.ParseError as e:
-            st.error(f"❌ Geçersiz Fields XML: {e}")
+            st.error(f"Geçersiz Fields XML: {e}", icon=":metarial/block:")
     else:
-        st.info("💭 Lütfen önce Fields XML alanını doldurun.")
+        st.info("Lütfen önce Fields XML alanını doldurun.", icon=":material/chat_info:")
