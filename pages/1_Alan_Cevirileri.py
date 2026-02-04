@@ -2,6 +2,7 @@ import streamlit as st
 import yaml
 from pathlib import Path
 import pandas as pd
+import time
 
 LABEL_PATH = Path(__file__).parent.parent / "config" / "labels.yaml"
 
