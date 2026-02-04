@@ -12,8 +12,6 @@ st.set_page_config(
 )
 
 st.sidebar.title("Tablix Generator")
-st.sidebar.markdown("SSRS Tablix Üretici")
-
 selected_lang = st.sidebar.selectbox(
     "Oluşacak Tablix Başlık Dili",
     options=["TR", "EN"],
@@ -26,7 +24,7 @@ st.title("SSRS Tablix Generator")
 col1, col2 = st.columns(2)
 
 with col1:
-    st.subheader("Fields XML",
+    st.subheader("Fields XML", anchor=False,
                  help="SSRS için oluşturulmuş datasete ait Fields bloğu buraya yapıştırılarak Tablix Oluştur Butonuna basılacaktır.")
     fields_xml = st.text_area(
         label="Fields XML",
@@ -43,7 +41,7 @@ with col1:
     st.button("Tablix Oluştur")
 
 with col2:
-    st.subheader("Oluşturulan Tablix XML")
+    st.subheader("Oluşturulan Tablix XML", anchor=False)
 
     if fields_xml.strip():
         try:
