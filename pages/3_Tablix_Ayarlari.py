@@ -4,11 +4,6 @@ import streamlit as st
 import yaml
 from pathlib import Path
 
-from altair import value
-from jinja2.utils import concat
-from pyarrow.lib import Mapping
-from streamlit import color_picker
-
 CONFIG_PATH = Path(__file__).parent.parent / "config" / "tablix.yaml"
 
 st.set_page_config(layout="centered")
@@ -34,10 +29,12 @@ header_h = st.text_input("Başlık Yüksekliği", cfg.get("header_height", "0.7c
 st.subheader("Başlık Satırı Ayarları", divider="grey", anchor=False)
 col2_1, col2_2, col2_3 = st.columns(3)
 
+
 def extract_number(size):
     if isinstance(size, str):
         return int(''.join(filter(str.isdigit, size)) or 9)
     return size
+
 
 with col2_1:
     bckcolor_h = st.color_picker("Başlık Arkaplan Rengi", cfg.get("bckcolor", "#4682B4"))
@@ -76,7 +73,6 @@ if st.button("Kaydet"):
         "brdcolor": brdcolor,
         "brdsize": f"{brdsize}pt"
     })
-
 
     with open(CONFIG_PATH, "w", encoding="utf-8") as f:
         yaml.safe_dump(cfg, f, allow_unicode=True)

@@ -54,8 +54,8 @@ st.markdown("## Name Override'ları")
 overrides = type_cfg.get("overrides", {})
 
 ov_df = pd.DataFrame(
-    [{"Anahtar": k, "Format": v.get("format"), "Width": v.get("width"),"Align":v.get("align","")}
-     for k, v in overrides.items()],columns=["Anahtar", "Format", "Width", "Align"]
+    [{"Anahtar": k, "Format": v.get("format"), "Width": v.get("width"), "Align": v.get("align", "")}
+     for k, v in overrides.items()], columns=["Anahtar", "Format", "Width", "Align"]
 )
 
 edited_ov = st.data_editor(ov_df, num_rows="dynamic")
