@@ -10,7 +10,7 @@ DEFAULT_PATH = BASE_PATH / "config" / "labels.yaml"
 CUSTOM_PATH = BASE_PATH / "config" / "labels_custom.yaml"
 
 st.set_page_config(layout="centered")
-st.title("Alan Çevirileri")
+st.title("Alan Çevirileri", anchor=False)
 
 
 # ------------------ HELPERS ------------------
@@ -77,7 +77,7 @@ edited_df = st.data_editor(
 )
 
 # ------------------ BULK INPUT ------------------
-st.markdown("### ➕ Toplu Alan Ekle (Custom)")
+st.subheader(":material/add: Toplu Alan Ekle (Custom)", anchor=False)
 
 bulk_input = st.text_area(
     "Her satır: FieldName=Label",
