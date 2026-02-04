@@ -32,10 +32,10 @@ def create_header_textbox(name, idx, suffix, lang="TR"):
     tbstyle = ET.SubElement(tb, "Style")
     ET.SubElement(tbstyle, "BackgroundColor").text = tcfg.get("bckcolor", "SteelBlue")
     border = ET.SubElement(tbstyle, "Border")
-    ET.SubElement(border, "Color").text = "LightGrey"
+    ET.SubElement(border, "Color").text = tcfg.get("brdcolor", "LightGrey")
     ET.SubElement(border, "Style").text = "Solid"
     for side in ["Left", "Right", "Top", "Bottom"]:
-        ET.SubElement(tbstyle, f"Padding{side}").text = "1pt"
+        ET.SubElement(tbstyle, f"Padding{side}").text = tcfg.get("brdsize", "1pt")
 
     return tb
 
@@ -48,10 +48,10 @@ def create_data_textbox(name, type_name, idx, suffix):
 
     tbstyle = ET.SubElement(tb, "Style")
     border = ET.SubElement(tbstyle, "Border")
-    ET.SubElement(border, "Color").text = "LightGrey"
+    ET.SubElement(border, "Color").text = tcfg.get("brdcolor", "LightGrey")
     ET.SubElement(border, "Style").text = "Solid"
     for side in ["Left", "Right", "Top", "Bottom"]:
-        ET.SubElement(tbstyle, f"Padding{side}").text = "1pt"
+        ET.SubElement(tbstyle, f"Padding{side}").text = tcfg.get("brdsize", "1pt")
 
     paragraphs = ET.SubElement(tb, "Paragraphs")
     paragraph = ET.SubElement(paragraphs, "Paragraph")
