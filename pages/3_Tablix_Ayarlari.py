@@ -59,7 +59,7 @@ with col3_1:
 with col3_2:
     brdsize = st.number_input("Kenar Kalınlığı", value=extract_number(cfg.get("brdsize", 1)))
 
-if st.button("Kaydet"):
+if st.button("Kaydet", type="secondary", icon=":material/save:"):
     cfg.update({
         "dataset_name": dataset,
         "tablix_name": tablix,
