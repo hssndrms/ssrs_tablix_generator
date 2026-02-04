@@ -6,20 +6,22 @@ from pathlib import Path
 
 from altair import value
 from jinja2.utils import concat
+from pyarrow.lib import Mapping
 from streamlit import color_picker
 
 CONFIG_PATH = Path(__file__).parent.parent / "config" / "tablix.yaml"
 
+st.set_page_config(layout="centered")
 st.title("Tablix Ayarları")
-st.subheader("Genel")
+st.subheader("Genel", divider="grey", anchor=False)
 
 with open(CONFIG_PATH, "r", encoding="utf-8") as f:
     cfg = yaml.safe_load(f)
 
-dataset = st.text_input("Dataset Adı", cfg.get("dataset_name", "DataSet1"))
-tablix = st.text_input("Tablix Adı", cfg.get("tablix_name", "Tablix1"))
+dataset = st.text_input("Dataset Adı", cfg.get("dataset_name", "DataSet1"), icon=":material/database:")
+tablix = st.text_input("Tablix Adı", cfg.get("tablix_name", "Tablix1"), icon=":material/table:")
 
-st.subheader("Pozisyon")
+st.subheader("Pozisyon", divider="grey", anchor=False)
 col1_1, col1_2 = st.columns(2)
 with col1_1:
     top = st.text_input("Üstten Konum", cfg.get("top", "1cm"))
@@ -29,7 +31,7 @@ with col1_2:
 row_h = st.text_input("Satır Yüksekliği", cfg.get("row_height", "0.6cm"))
 header_h = st.text_input("Başlık Yüksekliği", cfg.get("header_height", "0.7cm"))
 
-st.subheader("Başlık Satırı Ayarları")
+st.subheader("Başlık Satırı Ayarları", divider="grey", anchor=False)
 col2_1, col2_2, col2_3 = st.columns(3)
 
 def extract_number(size):
@@ -51,7 +53,7 @@ with col2_3:
         value=extract_number(cfg.get("textsize", 9))
     )
 
-st.subheader("Kenarlık")
+st.subheader("Kenarlık", divider="grey", anchor=False)
 col3_1, col3_2 = st.columns(2)
 with col3_1:
     brdcolor = st.color_picker("Kenarlık Rengi", cfg.get("brdcolor", "#D9D9D9"))

@@ -6,6 +6,7 @@ import time
 
 LABEL_PATH = Path(__file__).parent.parent / "config" / "labels.yaml"
 
+st.set_page_config(layout="centered")
 st.title("Alan Çevirileri")
 
 with open(LABEL_PATH, "r", encoding="utf-8") as f:

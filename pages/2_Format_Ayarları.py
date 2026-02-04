@@ -7,6 +7,7 @@ import pandas as pd
 
 FORMAT_PATH = Path(__file__).parent.parent / "config" / "formats.yaml"
 
+st.set_page_config(layout="centered")
 st.title("Format Ayarları")
 
 # --- YAML oku ---
