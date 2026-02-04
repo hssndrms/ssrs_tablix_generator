@@ -8,7 +8,7 @@ import pandas as pd
 FORMAT_PATH = Path(__file__).parent.parent / "config" / "formats.yaml"
 
 st.set_page_config(layout="centered")
-st.title("Format Ayarları")
+st.title("Format Ayarları", anchor=False)
 
 # --- YAML oku ---
 with open(FORMAT_PATH, "r", encoding="utf-8") as f:
@@ -19,12 +19,13 @@ types = list(formats.keys())
 # --- Type seçimi ---
 selected_type = st.selectbox(
     "Alan Tipi (TypeName)",
-    types
+    types,
+    index=types.index("System.String") if "System.String" in types else 0
 )
 
 type_cfg = formats.get(selected_type, {})
 
-st.markdown("## Varsayılan Ayarlar")
+st.subheader(":material/settings: Varsayılan Ayarlar", anchor=False, divider="gray")
 
 # --- Default ayarlar ---
 col1, col2, col3 = st.columns(3)
@@ -32,23 +33,25 @@ col1, col2, col3 = st.columns(3)
 with col1:
     width = st.text_input(
         "Kolon Genişliği",
-        value=type_cfg.get("width", "")
+        value=type_cfg.get("width", ""),
+        icon=":material/fit_width:"
     )
 
 with col2:
     fmt = st.text_input(
         "Format",
-        value=type_cfg.get("format") or ""
+        value=type_cfg.get("format") or "",
+        icon=":material/text_format:"
     )
 
 with col3:
     align = st.selectbox(
         "Hizalama",
         ["Left", "Right", "Center"],
-        index=["Left", "Right", "Center"].index(type_cfg.get("align", "Left"))
+        index=["Left", "Right", "Center"].index(type_cfg.get("align", "Left")),
     )
 
-st.markdown("## Name Override'ları")
+st.subheader(":material/step_over: Name Override'ları", anchor=False, divider="gray")
 
 # --- Override tablo ---
 overrides = type_cfg.get("overrides", {})
@@ -65,10 +68,11 @@ invalid_aligns = edited_ov[
 ]
 
 if not invalid_aligns.empty:
-    st.warning("⚠️ Align alanında geçersiz değerler var. Sadece Left / Right / Center kullanılabilir.")
+    st.warning("Align alanında geçersiz değerler var. Sadece Left / Right / Center kullanılabilir.",
+               icon=":material/warning:")
 
 # --- Kaydet ---
-if st.button("Kaydet"):
+if st.button("Kaydet", type="secondary", icon=":material/save:"):
     errors = []
 
     for i, row in edited_ov.iterrows():
