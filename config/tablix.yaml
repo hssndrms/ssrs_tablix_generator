@@ -1,4 +1,6 @@
 bckcolor: '#4682B4'
+brdcolor: '#D9D9D9'
+brdsize: 1pt
 dataset_name: Main
 header_height: 6mm
 left: 0mm

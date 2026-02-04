@@ -6,6 +6,7 @@ EN:
   StoreDescription: Store Name
 TR:
   Amount: Tutar
+  BaseStoreCode: Kaynak Mağaza Kodu
   CreditCardPaymentNumber: Kredi Kartı Ödeme Numarası
   CreditCardTypeCode: Kredi Kartı Tipi
   CreditCardTypeDescription: Kredi Kartı Tipi Açıklaması
@@ -16,20 +17,27 @@ TR:
   DiscountAmount: İskonto Tutarı
   DocumentNumber: Belge Numarası
   EInvoiceNumber: E-Fatura Numarası
+  ErrorMessage: Hata Mesajı
   ExchangeRate: Kur
   FirstLastName: Adı Soyadı
   InvoiceDate: Fatura Tarihi
   InvoiceNumber: Fatura Ref. Numarası
   NetAmount: Net Tutar
+  OperationDate: İşlem Tarihi
   OrderDate: Sipariş Tarihi
   OrderNumber: Sipariş Ref. Numarası
   PaymentAmount: Ödeme Tutarı
   PaymentDate: Ödeme Tarihi
+  Process: Süreç
   ReturnAmount: İade Edilecek Tutar
   ReturnEInvoiceNumber: İade E-Fatura Numarası
   ReturnInvoiceDate: İade Fatura Tarihi
   ReturnInvoiceNumber: İade Fatura Numarası
+  RowGuid: Kayıt Tanımlama ID
   StoreCode: Mağaza Kodu
   StoreDescription: Mağaza Adı
+  Success: Başarılı
   TaxBase: Vergi Matrahı
+  UserFirstLastName: Kullanıcı Adı Soyadı
+  UserName: Kullanıcı Kodu
   VendorCode: Tedarikçi Kodu

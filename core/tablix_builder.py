@@ -10,6 +10,7 @@ ET.register_namespace("rd", NS_RD.strip("{}"))
 def create_header_textbox(name, idx, suffix, lang="TR"):
     tcfg = load_tablix_config()
     tb = ET.Element("Textbox", Name=f"hdr{name}{suffix}")
+
     ET.SubElement(tb, "CanGrow").text = "true"
 
     paragraphs = ET.SubElement(tb, "Paragraphs")
@@ -25,10 +26,16 @@ def create_header_textbox(name, idx, suffix, lang="TR"):
     ET.SubElement(style, "FontWeight").text = "Bold"
     ET.SubElement(style, "Color").text = tcfg.get("txtcolor", "White")
 
+
     ET.SubElement(tb, NS_RD + "DefaultName").text = f"Textbox{10 + idx}"
 
-    style2 = ET.SubElement(tb, "Style")
-    ET.SubElement(style2, "BackgroundColor").text = tcfg.get("bckcolor", "SteelBlue")
+    tbstyle = ET.SubElement(tb, "Style")
+    ET.SubElement(tbstyle, "BackgroundColor").text = tcfg.get("bckcolor", "SteelBlue")
+    border = ET.SubElement(tbstyle, "Border")
+    ET.SubElement(border, "Color").text = "LightGrey"
+    ET.SubElement(border, "Style").text = "Solid"
+    for side in ["Left", "Right", "Top", "Bottom"]:
+        ET.SubElement(tbstyle, f"Padding{side}").text = "1pt"
 
     return tb
 
@@ -38,6 +45,13 @@ def create_data_textbox(name, type_name, idx, suffix):
     tcfg = load_tablix_config()
 
     tb = ET.Element("Textbox", Name=name + suffix)
+
+    tbstyle = ET.SubElement(tb, "Style")
+    border = ET.SubElement(tbstyle, "Border")
+    ET.SubElement(border, "Color").text = "LightGrey"
+    ET.SubElement(border, "Style").text = "Solid"
+    for side in ["Left", "Right", "Top", "Bottom"]:
+        ET.SubElement(tbstyle, f"Padding{side}").text = "1pt"
 
     paragraphs = ET.SubElement(tb, "Paragraphs")
     paragraph = ET.SubElement(paragraphs, "Paragraph")
