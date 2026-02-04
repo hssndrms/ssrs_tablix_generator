@@ -15,7 +15,7 @@ st.sidebar.title("Tablix Generator")
 st.sidebar.markdown("SSRS Tablix Üretici")
 
 selected_lang = st.sidebar.selectbox(
-    "Dil",
+    "Oluşacak Tablix Başlık Dili",
     options=["TR", "EN"],
     index=0  # default TR
 )
