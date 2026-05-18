@@ -47,7 +47,10 @@ with col2_2:
 with col2_3:
     textsize_h = st.number_input(
         "Yazı Boyutu (pt)",
-        value=extract_number(cfg.get("textsize", 9))
+        value=extract_number(cfg.get("textsize", 9)),
+        min_value=1,
+        step=1,
+        format="%d"
     )
 
 st.subheader("Kenarlık", divider="grey", anchor=False)
@@ -57,7 +60,7 @@ with col3_1:
     st.text(brdcolor)
 
 with col3_2:
-    brdsize = st.number_input("Kenar Kalınlığı", value=extract_number(cfg.get("brdsize", 1)))
+    brdsize = st.number_input("Kenar Kalınlığı", value=extract_number(cfg.get("brdsize", 1)), min_value=0, step=1, format="%d")
 
 if st.button("Kaydet", type="secondary", icon=":material/save:"):
     cfg.update({

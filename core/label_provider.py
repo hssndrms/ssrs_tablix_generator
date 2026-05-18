@@ -2,10 +2,20 @@
 import yaml
 from pathlib import Path
 
-LABEL_PATH = Path(__file__).parent.parent / "config" / "labels.yaml"
+_CONFIG = Path(__file__).parent.parent / "config"
+LABEL_PATH        = _CONFIG / "labels.yaml"
+LABEL_CUSTOM_PATH = _CONFIG / "labels_custom.yaml"
+
 
 def get_label(field, lang="TR"):
-    with open(LABEL_PATH, "r", encoding="utf-8") as f:
-        labels = yaml.safe_load(f) or {}
+    def _load(path):
+        if not path.exists():
+            return {}
+        with open(path, "r", encoding="utf-8") as f:
+            return yaml.safe_load(f) or {}
 
-    return labels.get(lang, {}).get(field, field)
+    defaults = _load(LABEL_PATH)
+    customs  = _load(LABEL_CUSTOM_PATH)
+
+    merged = {**defaults.get(lang, {}), **customs.get(lang, {})}
+    return merged.get(field, field)

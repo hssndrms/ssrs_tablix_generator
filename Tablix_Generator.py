@@ -18,7 +18,6 @@ selected_lang = st.sidebar.selectbox(
     index=0  # default TR
 )
 
-st.set_page_config(layout="wide")
 st.title("SSRS Tablix Generator")
 
 col1, col2 = st.columns(2)
@@ -38,15 +37,23 @@ with col1:
         help="Aynı rapora birden fazla tablix eklerken isim çakışmasını önlemek için kullanılır."
     )
 
-    st.button("Tablix Oluştur")
+    generate = st.button("Tablix Oluştur", type="primary", icon=":material/play_arrow:")
+    if generate and fields_xml.strip():
+        st.session_state["last_fields_xml"] = fields_xml
+        st.session_state["last_suffix"]     = suffix
+        st.session_state["last_lang"]       = selected_lang
 
 with col2:
     st.subheader("Oluşturulan Tablix XML", anchor=False)
 
-    if fields_xml.strip():
+    cached_xml  = st.session_state.get("last_fields_xml", "")
+    cached_sfx  = st.session_state.get("last_suffix", suffix)
+    cached_lang = st.session_state.get("last_lang", selected_lang)
+
+    if cached_xml.strip():
         try:
-            fields = parse_fields(fields_xml)
-            tablix = create_tablix(fields, suffix, lang=selected_lang)
+            fields = parse_fields(cached_xml)
+            tablix = create_tablix(fields, cached_sfx, lang=cached_lang)
 
             raw = ET.tostring(tablix, encoding="utf-8")
             pretty = xml.dom.minidom.parseString(raw).toprettyxml(indent="  ")
@@ -60,6 +67,6 @@ with col2:
                 file_name="tablix.xml"
             )
         except ET.ParseError as e:
-            st.error(f"Geçersiz Fields XML: {e}", icon=":metarial/block:")
+            st.error(f"Geçersiz Fields XML: {e}", icon=":material/block:")
     else:
         st.info("Lütfen önce Fields XML alanını doldurun.", icon=":material/chat_info:")

@@ -1,0 +1,46 @@
+Codemap Scan Report — 2026-05-18
+=================================
+
+Status: INITIAL SCAN (no previous codemaps found)
+
+Files scanned
+-------------
+Tablix_Generator.py
+core/fields_parser.py
+core/tablix_builder.py
+core/label_provider.py
+core/format_config.py
+core/tablix_config.py
+pages/1_Alan_Cevirileri.py
+pages/2_Format_Ayarlari.py
+pages/3_Tablix_Ayarlari.py
+config/labels.yaml
+config/labels_custom.yaml
+config/formats.yaml
+config/tablix.yaml
+requirements.txt
+
+Codemaps generated
+------------------
+docs/CODEMAPS/architecture.md  — system diagram, data flow, module map
+docs/CODEMAPS/frontend.md      — page tree, layout, state management
+docs/CODEMAPS/data.md          — YAML config schemas
+docs/CODEMAPS/dependencies.md  — packages and stdlib modules
+
+Architecture summary
+--------------------
+- Single Streamlit app, no database, no API
+- Entry point: Tablix_Generator.py
+- Core logic: 5 modules under core/ (parser, builder, label, format, config loaders)
+- UI pages: 3 Streamlit settings pages under pages/
+- All state persisted in 4 YAML files under config/
+- Generation is reactive (triggers on non-empty fields_xml, not on button click)
+
+New dependencies detected
+-------------------------
+streamlit, pyyaml (Python packages)
+xml.etree.ElementTree, xml.dom.minidom, pathlib, re (stdlib)
+
+Staleness warnings
+------------------
+None — initial scan.

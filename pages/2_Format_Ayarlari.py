@@ -64,7 +64,7 @@ ov_df = pd.DataFrame(
 edited_ov = st.data_editor(ov_df, num_rows="dynamic")
 
 invalid_aligns = edited_ov[
-    ~edited_ov["Align"].str.lower().isin(["", "left", "right", "center"])
+    ~edited_ov["Align"].fillna("").str.lower().isin(["", "left", "right", "center"])
 ]
 
 if not invalid_aligns.empty:
