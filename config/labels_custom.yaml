@@ -1,2 +1,5 @@
 EN: null
-TR: null
+TR:
+  Balance: Bakiye
+  Credit: Alacak
+  Debit: Borç
