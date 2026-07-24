@@ -3,3 +3,6 @@ TR:
   Balance: Bakiye
   Credit: Alacak
   Debit: Borç
+  FirstName: Adı
+  IsBlocked: Kullanım Dışı
+  LastName: Soyadı
