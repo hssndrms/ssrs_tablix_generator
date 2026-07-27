@@ -4,6 +4,8 @@ import xml.etree.ElementTree as ET
 
 from core.fields_parser import parse_fields
 from core.tablix_builder import create_tablix
+from core.label_provider import has_label
+from core.auto_translate import suggest_label
 
 st.set_page_config(
     page_title="Tablix Generator",
@@ -66,6 +68,24 @@ with col2:
                 final_xml,
                 file_name="tablix.xml"
             )
+
+            missing = [name for name, _ in fields if not has_label(name, cached_lang)]
+            if missing:
+                st.warning(
+                    f"Aşağıdaki kolonların {cached_lang} çevirisi bulunamadı, "
+                    f"başlık olarak alan adı kullanıldı:",
+                    icon=":material/translate:"
+                )
+                with st.spinner("Çeviri önerileri getiriliyor…"):
+                    missing_text = "\n".join(
+                        f"{name}={suggest_label(name, cached_lang)}"
+                        for name in missing
+                    )
+                st.code(missing_text, language="text")
+                st.caption(
+                    "Öneriler otomatik çeviridir; listeyi kopyalayıp gerekirse "
+                    "düzelterek **Alan Çevirileri** sayfasından ekleyebilirsiniz."
+                )
         except ET.ParseError as e:
             st.error(f"Geçersiz Fields XML: {e}", icon=":material/block:")
     else:

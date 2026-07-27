@@ -1,7 +1,9 @@
 {
   "permissions": {
     "allow": [
-      "Skill(update-codemaps)"
+      "Skill(update-codemaps)",
+      "Bash(pip install *)",
+      "Bash(python -c \"from core.auto_translate import split_camel_case, suggest_label; print\\(split_camel_case\\('SalesChannelCode'\\)\\); print\\(repr\\(suggest_label\\('SalesChannelCode','TR'\\)\\)\\); print\\(repr\\(suggest_label\\('SalesChannelDescription','TR'\\)\\)\\)\")"
     ]
   }
 }
