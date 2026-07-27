@@ -6,3 +6,5 @@ TR:
   FirstName: Adı
   IsBlocked: Kullanım Dışı
   LastName: Soyadı
+  SalesChannelCode: Satış Kanalı
+  SalesChannelDescription: Satış Kanalı Açıklama
