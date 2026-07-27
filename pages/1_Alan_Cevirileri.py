@@ -79,45 +79,56 @@ edited_df = st.data_editor(
 # ------------------ BULK INPUT ------------------
 st.subheader(":material/add: Toplu Alan Ekle (Custom)", anchor=False)
 
+# Kaydet sonrası metin kutusunu temizle (widget oluşturulmadan önce)
+if st.session_state.pop("clear_bulk", False):
+    st.session_state["bulk_input"] = ""
+
 bulk_input = st.text_area(
     "Her satır: FieldName=Label",
     height=150,
-    placeholder="StoreCode=Mağaza Kodu\nStoreDescription=Mağaza Adı"
+    placeholder="StoreCode=Mağaza Kodu\nStoreDescription=Mağaza Adı",
+    key="bulk_input"
 )
 
 # ------------------ SAVE ------------------
 if st.button("Kaydet", type="secondary", icon=":material/save:"):
-    custom_labels[lang] = custom_labels.get(lang) or {}
+    # Custom sözlüğü tablodan SIFIRDAN kur -> silinen satırlar da çıkar
+    new_custom = {}
 
-    # 1️⃣ data_editor'dan gelen değişiklikler
+    # 1️⃣ data_editor'daki mevcut satırlar
     for _, row in edited_df.iterrows():
         field = str(row["Alan"]).strip()
         label = str(row["Etiket"]).strip()
 
-        default_value = default_labels[lang].get(field)
+        if not field or not label:
+            continue
 
-        if default_value == label:
-            # default'a geri döndüyse custom'tan sil
-            custom_labels[lang].pop(field, None)
-        else:
-            # custom override
-            custom_labels[lang][field] = label
+        # default ile aynıysa custom'a gerek yok
+        if default_labels[lang].get(field) == label:
+            continue
+
+        new_custom[field] = label
 
     # 2️⃣ bulk input (HER ZAMAN custom)
     if bulk_input.strip():
         for line in bulk_input.splitlines():
             if "=" in line:
                 field, label = line.split("=", 1)
-                custom_labels[lang][field.strip()] = label.strip()
+                field, label = field.strip(), label.strip()
+                if field and label:
+                    new_custom[field] = label
 
-    # 3️⃣ boş lang temizle
-    if not custom_labels[lang]:
+    # 3️⃣ ilgili dili güncelle / boşsa temizle
+    if new_custom:
+        custom_labels[lang] = new_custom
+    else:
         custom_labels.pop(lang, None)
 
     # 4️⃣ YAML yaz
     with open(CUSTOM_PATH, "w", encoding="utf-8") as f:
         yaml.safe_dump(custom_labels, f, allow_unicode=True)
 
+    st.session_state["clear_bulk"] = True
     st.success("Çeviriler kaydedildi")
     time.sleep(1.2)
     st.rerun()
