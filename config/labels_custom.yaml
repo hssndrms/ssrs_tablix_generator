@@ -1,10 +1,28 @@
 EN: null
 TR:
   Balance: Bakiye
+  BankaKartiMi: Banka Karti Mi
   Credit: Alacak
   Debit: Borç
+  Erken_Odeme_Komisyonu_Tutari: Erken Ödeme Komisyonu Tutari
   FirstName: Adı
+  Franchise: Bayilik
+  IADE_IslemSayisi: IADE İşlem Sayısı
+  IadeTutar: İade Tutar
   IsBlocked: Kullanım Dışı
+  IslemSayisi: İşlem Sayısı
+  Islem_Tutari: Islem Tutari
+  KartGrubu: Kart Grubu
+  KartTuru: Kart Türü
   LastName: Soyadı
+  MaliyetMerkezi: Maliyet Merkezi
+  MaliyetMerkeziAciklama: Maliyet Merkezi Açıklama
+  Net_Tutar: Net Tutar
+  Puan_Komisyon_Tutari: Puan Komisyon Tutari
+  SATIS_IslemSayisi: SATIS İşlem Sayısı
   SalesChannelCode: Satış Kanalı
   SalesChannelDescription: Satış Kanalı Açıklama
+  SatisTutar: Satis Tutar
+  Servis_Komisyon_Tutari: Servis Komisyon Tutari
+  Vergi_Bsmv: Vergi Bsmv
+  Yil: Yıl
