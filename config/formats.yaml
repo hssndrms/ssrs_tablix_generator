@@ -49,8 +49,12 @@ System.String:
   align: Left
   format: null
   overrides:
+    curracccode:
+      width: 16mm
     currencycode:
       width: 12mm
+    customercode:
+      width: 16mm
     description:
       width: 75mm
     firstlastname:
@@ -58,7 +62,9 @@ System.String:
     parabiri:
       width: 12mm
     storecode:
-      width: 15mm
+      width: 16mm
     typecode:
       width: 15mm
+    vendorcode:
+      width: 16mm
   width: 25mm

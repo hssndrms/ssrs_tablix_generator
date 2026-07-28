@@ -4,11 +4,14 @@ TR:
   BankaKartiMi: Banka Karti Mi
   Credit: Alacak
   Debit: Borç
+  DocCurrencyCode: Doküman Para Birimi
+  Doc_NetAmount: Net Satış Tutarı (D)
   Erken_Odeme_Komisyonu_Tutari: Erken Ödeme Komisyonu Tutari
   FirstName: Adı
   Franchise: Bayilik
   IADE_IslemSayisi: IADE İşlem Sayısı
   IadeTutar: İade Tutar
+  ImportFileNumber: Ithalat Dosya Numarası
   IsBlocked: Kullanım Dışı
   IslemSayisi: İşlem Sayısı
   Islem_Tutari: Islem Tutari
