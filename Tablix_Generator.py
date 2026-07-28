@@ -5,7 +5,7 @@ import xml.etree.ElementTree as ET
 from core.fields_parser import parse_fields
 from core.tablix_builder import create_tablix
 from core.label_provider import has_label
-from core.auto_translate import suggest_label
+from core.auto_translate import suggest_labels
 
 st.set_page_config(
     page_title="Tablix Generator",
@@ -77,10 +77,10 @@ with col2:
                     icon=":material/translate:"
                 )
                 with st.spinner("Çeviri önerileri getiriliyor…"):
-                    missing_text = "\n".join(
-                        f"{name}={suggest_label(name, cached_lang)}"
-                        for name in missing
-                    )
+                    suggestions = suggest_labels(tuple(missing), cached_lang)
+                missing_text = "\n".join(
+                    f"{name}={suggestions.get(name, '')}" for name in missing
+                )
                 st.code(missing_text, language="text")
                 st.caption(
                     "Öneriler otomatik çeviridir; listeyi kopyalayıp gerekirse "
