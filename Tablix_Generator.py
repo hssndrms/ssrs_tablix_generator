@@ -6,6 +6,7 @@ from core.fields_parser import parse_fields
 from core.tablix_builder import create_tablix
 from core.label_provider import has_label
 from core.auto_translate import suggest_labels
+from core.tablix_config import load_tablix_config
 
 st.set_page_config(
     page_title="Tablix Generator",
@@ -33,6 +34,12 @@ with col1:
         placeholder="<Fields>...</Fields>",
         label_visibility="collapsed"
     )
+    dataset_name = st.text_input(
+        "DataSet Adı",
+        value=load_tablix_config()["dataset_name"],
+        help="Tablix Ayarları sayfasındaki değer varsayılan olarak gelir; burada değiştirilirse "
+             "oluşturulan Tablix'te yeni değer kullanılır."
+    )
     suffix = st.text_input(
         "Suffix",
         value="10",
@@ -44,6 +51,7 @@ with col1:
         st.session_state["last_fields_xml"] = fields_xml
         st.session_state["last_suffix"]     = suffix
         st.session_state["last_lang"]       = selected_lang
+        st.session_state["last_dataset"]    = dataset_name
 
 with col2:
     st.subheader("Oluşturulan Tablix XML", anchor=False)
@@ -51,11 +59,13 @@ with col2:
     cached_xml  = st.session_state.get("last_fields_xml", "")
     cached_sfx  = st.session_state.get("last_suffix", suffix)
     cached_lang = st.session_state.get("last_lang", selected_lang)
+    cached_ds   = st.session_state.get("last_dataset", dataset_name)
 
     if cached_xml.strip():
         try:
             fields = parse_fields(cached_xml)
-            tablix = create_tablix(fields, cached_sfx, lang=cached_lang)
+            tablix = create_tablix(fields, cached_sfx, lang=cached_lang,
+                                   dataset_name=cached_ds)
 
             raw = ET.tostring(tablix, encoding="utf-8")
             pretty = xml.dom.minidom.parseString(raw).toprettyxml(indent="  ")

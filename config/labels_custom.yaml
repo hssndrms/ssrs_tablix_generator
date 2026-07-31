@@ -1,5 +1,8 @@
 EN: null
 TR:
+  ApplicationCode: Uygulama Kodu
+  ApplicationDescription: Uygulama Açıklaması
+  ApplicationName: Uygulama Adı
   Balance: Bakiye
   BankaKartiMi: Banka Karti Mi
   Credit: Alacak
@@ -7,6 +10,7 @@ TR:
   DocCurrencyCode: Doküman Para Birimi
   Doc_NetAmount: Net Satış Tutarı (D)
   Erken_Odeme_Komisyonu_Tutari: Erken Ödeme Komisyonu Tutari
+  FieldNameTR: Alan Adı TR
   FirstName: Adı
   Franchise: Bayilik
   IADE_IslemSayisi: IADE İşlem Sayısı
@@ -21,11 +25,14 @@ TR:
   MaliyetMerkezi: Maliyet Merkezi
   MaliyetMerkeziAciklama: Maliyet Merkezi Açıklama
   Net_Tutar: Net Tutar
+  NewValue: Yeni Değer
+  OldValue: Eski Değer
   Puan_Komisyon_Tutari: Puan Komisyon Tutari
   SATIS_IslemSayisi: SATIS İşlem Sayısı
   SalesChannelCode: Satış Kanalı
   SalesChannelDescription: Satış Kanalı Açıklama
   SatisTutar: Satis Tutar
   Servis_Komisyon_Tutari: Servis Komisyon Tutari
+  UpdateDate: Güncelleme Tarihi
   Vergi_Bsmv: Vergi Bsmv
   Yil: Yıl

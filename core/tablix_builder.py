@@ -74,7 +74,7 @@ def create_data_textbox(name, type_name, idx, suffix):
     return tb
 
 
-def create_tablix(fields, suffix="10", lang="TR"):
+def create_tablix(fields, suffix="10", lang="TR", dataset_name=None):
     tcfg = load_tablix_config()
 
     tablix = ET.Element("Tablix", Name=tcfg["tablix_name"])
@@ -114,7 +114,10 @@ def create_tablix(fields, suffix="10", lang="TR"):
         cont.append(create_data_textbox(name, type_name, i, suffix))
 
     # --- Dataset ---
-    ET.SubElement(tablix, "DataSetName").text = tcfg["dataset_name"]
+    ET.SubElement(tablix, "DataSetName").text = (
+        dataset_name.strip() if dataset_name and dataset_name.strip()
+        else tcfg["dataset_name"]
+    )
 
     # --- Column Hierarchy (ZORUNLU) ---
     col_hier = ET.SubElement(tablix, "TablixColumnHierarchy")
